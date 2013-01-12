@@ -46,9 +46,13 @@ module.exports = function(grunt) {
     files.forEach(function(filepath) {
       var fileExtname = path.extname(filepath)
         , src = grunt.file.read(filepath)
+        , srcDir = path.dirname(filepath) //vk
         , outputFilename = path.basename(filepath, fileExtname)
-        , outputFilepath = dest + outputFilename + outputExtension
+        // , outputFilepath = dest + outputFilename + outputExtension
+        , outputFilepath = sourceDir + '/' + outputFilename + outputExtension
         , compiled = grunt.helper('compile', src, options, wrapper, outputFilename, filepath);
+
+      // grunt.file.write(outputFilepath, compiled);
       grunt.file.write(outputFilepath, compiled);
     });
 
